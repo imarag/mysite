@@ -61,6 +61,30 @@ body {
 #about-me-icons-container .about-me-icon-div:hover {
   transform: translateY(150px) translateX(150px);
 }
+/* ------------------------- GET DATA PAGE ----------------------------*/
+
+.button-download-selected:hover {
+  background-color: #9e9e9e;
+}
+
+.get-data-trace-container {
+  background-color: #ebebeb;
+  border-radius: 10px;
+}
+
+.get-data-trace-container:hover {
+  background-color: #d1d1d1;
+}
+
+#button-download-all:hover {
+  color: #4169e1 !important;
+}
+
+#found-traces-container {
+  height: 400px;
+  overflow-y: auto;
+  padding: 0px 20px;
+}
 
 /* ------------------------- INDEX PAGE ----------------------------*/
 

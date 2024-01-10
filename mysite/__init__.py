@@ -149,14 +149,14 @@ def create_app():
         }
         return render_template("base-error.html", error=error), 404
 
-    @app.errorhandler(503)
-    def error_503(error):
-        error = {
-            "title": "Service Unavailable!",
-            "description": "The server is not ready to handle the request. Commonly used when a server is temporarily down for maintenance.",
-            "code": 503,
-        }
-        return render_template("base-error.html", error=error), 503
+    # @app.errorhandler(503)
+    # def error_503(error):
+    #     error = {
+    #         "title": "Service Unavailable!",
+    #         "description": "The server is not ready to handle the request. Commonly used when a server is temporarily down for maintenance.",
+    #         "code": 503,
+    #     }
+    #     return render_template("base-error.html", error=error), 503
 
     from . import fourier
     from . import pick_arrivals
@@ -166,6 +166,7 @@ def create_app():
     from . import admin
     from . import distance_between_points
     from . import edit_seismic_file
+    from . import get_data
 
     app.register_blueprint(fourier.bp)
     app.register_blueprint(pick_arrivals.bp)
@@ -175,5 +176,6 @@ def create_app():
     app.register_blueprint(search_topics.bp)
     app.register_blueprint(distance_between_points.bp)
     app.register_blueprint(edit_seismic_file.bp)
+    app.register_blueprint(get_data.bp)
 
     return app

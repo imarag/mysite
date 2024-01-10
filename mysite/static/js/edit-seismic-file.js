@@ -205,7 +205,6 @@ function getTraceInfo(selectedTrace) {
       samplingRateInput.value = traceDataObject["stats"]["sampling_rate"];
       nptsInput.value = traceDataObject["stats"]["npts"];
       componentInput.value = traceDataObject["stats"]["channel"];
-
       let tracePlotObject = {
         x: traceDataObject["xdata"],
         y: traceDataObject["ydata"],

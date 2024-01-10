@@ -115,10 +115,10 @@ def get_trace_info():
             "sampling_rate": tr.stats["sampling_rate"],
             "station": tr.stats["station"],
             "date": tr.stats["starttime"].date.isoformat(),
-            "time": tr.stats["starttime"].time.isoformat(),
+            "time": tr.stats["starttime"].time.isoformat()[:8],
         },
     }
-
+    print(trace_dict)
     return jsonify(trace_dict)
 
 
