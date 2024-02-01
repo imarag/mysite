@@ -10,194 +10,216 @@ Get Waveforms
 <div class="container-lg">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb my-5">
-            <li class="breadcrumb-item"><a href="{{ url_for('get_page', page_name='index') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Get Data</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data</a></li>
             <li class="breadcrumb-item active" aria-current="page">Get Waveforms</a></li>
         </ol>
     </nav>
-    <div class="row justify-content-center align-items-center g-5">
-        <div class="col-11 col-sm-10 col-md-8 col-lg-5 col-xl-4">
-            <form action="{{ url_for('BP_get_data.get_waveforms') }}" method="GET" id="get-waveforms-form">
-                <div class="row my-3">
-                    <div class="col">
-                        <label for="data-center" class="form-label text-muted fs-6">
-                            FDSN web service
-                            <a href="https://docs.obspy.org/packages/obspy.clients.fdsn.html#basic-fdsn-client-usage"
-                                class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
-                                data-bs-custom-class="custom-tooltip"
-                                data-bs-title="Specify the data center (FDSN web service) to which you want to connect. Click to check the available web services.">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-question-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
-                                </svg>
-                            </a>
-                        </label>
-                        <input type="text" class="form-control" id="data-center" name="data-center"
-                            value="{{ request.args['data-center'] if 'data-center' in request.args else '' }}"
-                            placeholder="e.g., IRIS" required>
-                    </div>
-                    <div class="col">
-                        <label for="network" class="form-label text-muted fs-6">
-                            Network Code
+    <div class="lead">
+
+    
+        <p class="lead mb-3">
+            To get the available data we utilize the <a href="https://www.fdsn.org/about/">FDSN</a> resources available for free by its members. This organization 
+            contains several datacenters that offer access to diverse seismic data services. These services include:
+        </p>
+        <ul>
+            <li><i>Dataselect</i> for retrieving seismic waveform data</li>
+            <li><i>Station</i> for extracting details about seismic stations</li>
+            <li><i>Event</i>  for accessing information about earthquakes</li>
+        </ul>
+        <p>
+            For a comprehensive list of data centers providing these services, visit the <a href="https://www.fdsn.org/datacenters/" target="_blank">FDSN Data Center Registry</a>. 
+        </p>
+        <p>
+            To obtain information programmatically, you can also retrieve data center details in <a href="https://www.fdsn.org/ws/datacenters/1/query">JSON format</a>.
+        </p>
+
+
+        <div class="mt-2 mb-5">
+            <label for="data-center" class="form-label text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-database" viewBox="0 0 16 16">
+                    <path d="M4.318 2.687C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4c0-.374.356-.875 1.318-1.313M13 5.698V7c0 .374-.356.875-1.318 1.313C10.766 8.729 9.464 9 8 9s-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777A5 5 0 0 0 13 5.698M14 4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13zm-1 4.698V10c0 .374-.356.875-1.318 1.313C10.766 11.729 9.464 12 8 12s-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777A5 5 0 0 0 13 8.698m0 3V13c0 .374-.356.875-1.318 1.313C10.766 14.729 9.464 15 8 15s-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13s3.022-.289 4.096-.777c.324-.147.633-.323.904-.525"/>
+                </svg>
+                FDSN Data Center
+                <a href="https://docs.obspy.org/packages/obspy.clients.fdsn.html#basic-fdsn-client-usage"
+                    class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    data-bs-title="Specify the data center (FDSN web service) to which you want to connect. Click to check the available web services.">
+                </a>
+            </label>
+            <select class="form-select form-select-sm" style="width: 200px" aria-label="Default select example" id="data-center" name="data-center" value="{{ request.args['data-center'] if 'data-center' in request.args else '' }}">
+            </select>
+            <p class="d-inline-flex gap-1 my-1">
+                <button class="btn btn-outline-light text-secondary p-1" id="bt-show-datacenter-info" type="button" data-bs-toggle="collapse" data-bs-target="#datacenter-info" aria-expanded="false" aria-controls="datacenter-info">
+                    + show info
+                </button>
+            </p>
+            <div class="collapse" id="datacenter-info">
+                <div class="card card-body bg-light" style="overflow: auto;">
+                    <p style="text-wrap: nowrap;"><span class="fw-bold me-1">Website:</span><span class="text-danger" id="datacenter-website"></span></p>
+                    <p style="text-wrap: nowrap;"><span class="fw-bold me-1">Fullname:</span><span class="text-danger" id="datacenter-fullname"></span></p>
+                    <p style="text-wrap: nowrap;"><span class="fw-bold me-1">Summary:</span><span class="text-danger" id="datacenter-summary"></span></p>
+                </div>
+            </div>
+        
+        </div>
+        <h1 class="fs-1 my-4 mb-2">Select the available service</h1>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active tab-item-dataselect">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"/>
+                    </svg>
+                    Dataselect
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tab-item-station">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                    </svg>
+                    Station
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tab-item-event">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                    </svg>
+                    Event
+                </a>
+            </li>
+        </ul>
+        
+        <div class="row justify-content-center align-items-stretch my-4">
+            <div class="col-3 bg-dark p-4 fs-6">
+                <p class="text-end">
+                    <a class="icon-link icon-link-hover link-secondary text-decoration-none mb-3" href="#" id="btn-set-default-values">
+                        set default values
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+                        </svg>
+                    </a>
+                </p>
+                <form action="{{ url_for('BP_get_data.get_waveforms') }}" method="GET">
+                    <div class="my-2">
+                        <label for="data-center" class="form-label text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-houses" viewBox="0 0 16 16">
+                                <path d="M5.793 1a1 1 0 0 1 1.414 0l.647.646a.5.5 0 1 1-.708.708L6.5 1.707 2 6.207V12.5a.5.5 0 0 0 .5.5.5.5 0 0 1 0 1A1.5 1.5 0 0 1 1 12.5V7.207l-.146.147a.5.5 0 0 1-.708-.708zm3 1a1 1 0 0 1 1.414 0L12 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l1.854 1.853a.5.5 0 0 1-.708.708L15 8.207V13.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 13.5V8.207l-.146.147a.5.5 0 1 1-.708-.708zm.707.707L5 7.207V13.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5V7.207z"/>
+                            </svg>
+                            FDSN Network
                             <a href="https://www.fdsn.org/networks/" class="link-info" target="_blank"
                                 data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
                                 data-bs-title="Select one or more network codes. Use SEED network codes or data center-defined codes. Click for more information.">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-question-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
-                                </svg>
                             </a>
                         </label>
-                        <input type="text" class="form-control" id="network" name="network" placeholder="e.g., IU"
-                            value="{{ request.args['network'] if 'network' in request.args else '' }}" required>
+                        <input class="form-control form-control-sm" aria-label="Default select example" id="network" name="network" value="{{ request.args['network'] if 'network' in request.args else '' }}">
                     </div>
-                </div>
-                <div class="row my-3">
-                    <div class="col-6">
-                        <label for="station" class="form-label text-muted fs-6">
+                    <div class="my-2">
+                        <label for="station" class="form-label text-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                                <path d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659"/>
+                            </svg>
                             Station
                             <a href="http://docs.fdsn.org/projects/source-identifiers/en/v1.0/definition.html#from-seed-nslc-to-source-identifier"
                                 class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
                                 data-bs-custom-class="custom-tooltip"
                                 data-bs-title="Select one or more SEED station codes. Click for more information.">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-question-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
-                                </svg>
                             </a>
                         </label>
-                        <input type="text" class="form-control" id="station" name="station" placeholder="e.g., ANMO"
+                        <input type="text" class="form-control  form-control-sm" id="station" name="station" placeholder="e.g., ANMO"
                             value="{{ request.args['station'] if 'station' in request.args else '' }}" required>
                     </div>
-
-                </div>
-                <div class="row my-3">
-                    <div class="col">
-                        <label for="start-date" class="form-label text-muted fs-6">
-                            Start Date
-                            <a href="https://docs.obspy.org/packages/autogen/obspy.clients.fdsn.client.Client.get_waveforms.html#obspy-clients-fdsn-client-client-get-waveforms"
-                                class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
-                                data-bs-custom-class="custom-tooltip"
-                                data-bs-title="Restricts the returned time series samples to those occurring at or after the specified start time in Coordinated Universal Time (UTC)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-question-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <label for="start-date" class="form-label text-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
                                 </svg>
-                            </a>
-                        </label>
-                        <input type="date" class="form-control" id="start-date" name="start-date"
-                            value="{{ request.args['start-date'] if 'start-date' in request.args else '' }}" required>
-                    </div>
-                    <div class="col">
-                        <label for="start-time" class="form-label text-muted fs-6">
-                            Start Time
-                            <a href="https://docs.obspy.org/packages/autogen/obspy.clients.fdsn.client.Client.get_waveforms.html#obspy-clients-fdsn-client-client-get-waveforms"
-                                class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
-                                data-bs-custom-class="custom-tooltip"
-                                data-bs-title="Restricts the returned time series samples to those occurring at or after the specified start date in Coordinated Universal Time (UTC)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-question-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
-                                </svg>
-                            </a>
-                        </label>
-                        <input type="time" class="form-control" id="start-time" name="start-time"
-                            value="{{ request.args['start-time'] if 'start-time' in request.args else '' }}" required>
-                    </div>
-                </div>
-                <div class="row my-3">
-                    <div class="col">
-                        <label for="end-date" class="form-label text-muted fs-6">
-                            End Date
-                            <a href="https://docs.obspy.org/packages/autogen/obspy.clients.fdsn.client.Client.get_waveforms.html#obspy-clients-fdsn-client-client-get-waveforms"
-                                class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
-                                data-bs-custom-class="custom-tooltip"
-                                data-bs-title="Restricts the returned time series samples to those occurring before or at the specified end date in Coordinated Universal Time (UTC)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-question-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
-                                </svg>
-                            </a>
-                        </label>
-                        <input type="date" class="form-control" id="end-date" name="end-date"
-                            value="{{ request.args['end-date'] if 'end-date' in request.args else '' }}" required>
-                    </div>
-                    <div class="col">
-                        <label for="end-time" class="form-label text-muted fs-6">
-                            End Time
-                            <a href="https://docs.obspy.org/packages/autogen/obspy.clients.fdsn.client.Client.get_waveforms.html#obspy-clients-fdsn-client-client-get-waveforms"
-                                class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
-                                data-bs-custom-class="custom-tooltip"
-                                data-bs-title="Restricts the returned time series samples to those occurring before or at the specified end time in Coordinated Universal Time (UTC)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-question-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
-                                </svg>
-                            </a>
-                        </label>
-                        <input type="time" class="form-control" id="end-time" name="end-time"
-                            value="{{ request.args['end-time'] if 'end-time' in request.args else '' }}" required>
-                    </div>
-                </div>
-                <p class="fs-6 text-muted text-center">
-                    All fields must be filled in! For more information check the obspy <a
-                        href="https://docs.obspy.org/packages/autogen/obspy.clients.fdsn.client.Client.get_waveforms.html"
-                        target="_blank" class="link-info"><code>get_waveforms</code></a> function
-                </p>
-                <div class="text-center  bg-red text-red mt-3" id="spinner-div">
-                    <div class="spinner-border spinner-border-xl text-warning" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-                <div class="mt-3 mb-5 text-center">
-                    <button class="btn btn-dark" type="submit">
-                        Submit
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-8">
-            <div class="bg-light border border-2 border-muted my-2">
-                <div class="p-4">
-                    <div id="found-traces-container">
-                        {% if stream == "no-trace-found" %}
-                        <p class="text-center fs-5 lead">
-                            No traces found based on the search parameters provided. Please try again using different
-                            options.
-                        </p>
-                        {% elif stream %}
-                        <div class="p-1 text-start">
-                            <a href="{{ url_for('BP_get_data.download_all') }}"
-                                class="text-decoration-none text-dark mx-3" id="button-download-all">
-                                Download All
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-download" viewBox="0 0 16 16">
-                                    <path
-                                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                                    <path
-                                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
-                                </svg>
-                            </a>
+                                Start Date
+                                <a href="https://docs.obspy.org/packages/autogen/obspy.clients.fdsn.client.Client.get_waveforms.html#obspy-clients-fdsn-client-client-get-waveforms"
+                                    class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-custom-class="custom-tooltip"
+                                    data-bs-title="Restricts the returned time series samples to those occurring at or after the specified start time in Coordinated Universal Time (UTC)">
+                                </a>
+                            </label>
+                            <input type="date" class="form-control  form-control-sm" id="start-date" name="start-date" style="width: 100%;"
+                                value="{{ request.args['start-date'] if 'start-date' in request.args else '' }}" required>
                         </div>
-                        {% for tr in stream %}
-                        <div class="row justify-content-center align-items-center get-data-trace-container p-2 my-4">
-                            <div class="col-1">
-                                <a href="{{ url_for('BP_get_data.download_selected', id_value=tr['id']) }}"
-                                    class="text-decoration-none text-dark button-download-selected p-1 rounded m-1">
+                        <div class="col-6">
+                            <label for="start-time" class="form-label text-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                                </svg>
+                                Start Time
+                                <a href="https://docs.obspy.org/packages/autogen/obspy.clients.fdsn.client.Client.get_waveforms.html#obspy-clients-fdsn-client-client-get-waveforms"
+                                    class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-custom-class="custom-tooltip"
+                                    data-bs-title="Restricts the returned time series samples to those occurring at or after the specified start date in Coordinated Universal Time (UTC)">
+                                </a>
+                            </label>
+                            <input type="time" class="form-control  form-control-sm" id="start-time" name="start-time" style="width: 100%;"
+                                value="{{ request.args['start-time'] if 'start-time' in request.args else '' }}" required>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="end-date" class="form-label text-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                                </svg>
+                                End Date
+                                <a href="https://docs.obspy.org/packages/autogen/obspy.clients.fdsn.client.Client.get_waveforms.html#obspy-clients-fdsn-client-client-get-waveforms"
+                                    class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-custom-class="custom-tooltip"
+                                    data-bs-title="Restricts the returned time series samples to those occurring before or at the specified end date in Coordinated Universal Time (UTC)">
+                                </a>
+                            </label>
+                            <input type="date" class="form-control  form-control-sm" id="end-date" name="end-date" style="width: 100%;"
+                                value="{{ request.args['end-date'] if 'end-date' in request.args else '' }}" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="end-time" class="form-label text-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                                </svg>
+                                End Time
+                                <a href="https://docs.obspy.org/packages/autogen/obspy.clients.fdsn.client.Client.get_waveforms.html#obspy-clients-fdsn-client-client-get-waveforms"
+                                    class="link-info" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-custom-class="custom-tooltip"
+                                    data-bs-title="Restricts the returned time series samples to those occurring before or at the specified end time in Coordinated Universal Time (UTC)">
+                                </a>
+                            </label>
+                            <input type="time" class="form-control  form-control-sm" id="end-time" name="end-time" style="width: 100%;"
+                                value="{{ request.args['end-time'] if 'end-time' in request.args else '' }}" required>
+                        </div>
+                        <input class="invisible" id="dataselect-url" name="dataselect-url">
+                        <input class="invisible" id="station-url" name="station-url">
+                        <input class="invisible" id="event-url" name="event-url">
+                    </div>
+                    <div class="mt-4 text-center">
+                        <button class="btn btn-outline-info" type="submit">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-7 border border-dark border-1 bg-secondary-subtle">
+                <div class="my-2">
+                    <div class="p-4">
+                        <div id="found-traces-container">
+                            {% if stream == "no-trace-found" %}
+                            <p class="text-center fs-5 lead">
+                                No traces found based on the search parameters provided. Please try again using different
+                                options.
+                            </p>
+                            {% elif stream %}
+                            <div class="p-1 text-start">
+                                <a href="{{ url_for('BP_get_data.download_all') }}"
+                                    class="text-decoration-none text-dark mx-3" id="button-download-all">
+                                    Download All
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-download" viewBox="0 0 16 16">
                                         <path
@@ -207,38 +229,408 @@ Get Waveforms
                                     </svg>
                                 </a>
                             </div>
-                            <div class="col-11">
-                                <span class="form-check-label fs-6">{{ tr["label"] }}</span>
+                            {% for tr in stream %}
+                            <div class="row justify-content-center align-items-center get-data-trace-container p-2 my-4">
+                                <div class="col-1">
+                                    <a href="{{ url_for('BP_get_data.download_selected', id_value=tr['id']) }}"
+                                        class="text-decoration-none text-dark button-download-selected p-1 rounded m-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-download" viewBox="0 0 16 16">
+                                            <path
+                                                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                            <path
+                                                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="col-11">
+                                    <span class="form-check-label fs-6">{{ tr["label"] }}</span>
+                                </div>
                             </div>
+                            {% endfor %}
+                            {% else %}
+                            <p class="text-center fs-5 lead text-dark">
+                                Fill in the fields to search for seismic traces!
+                            </p>
+                            {% endif %}
                         </div>
-                        {% endfor %}
-                        {% else %}
-                        <p class="text-center fs-5 lead">
-                            Fill in the fields to search for seismic traces!
-                        </p>
-                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    
 </div>
 <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    let allDatacenters = {};
+    let datacenterSelect = document.querySelector("#data-center")
+    let networkSelect = document.querySelector("#network")
+    let setDefaultValuesButton = document.querySelector("#btn-set-default-values");
 
-    let buttonDownloadSelected = document.querySelector("#button-download-selected");
-    let buttonDownloadAll = document.querySelector("#button-download-all");
+    let btShowDataCenterInfo = document.querySelector("#bt-show-datacenter-info");
 
-    let getWaveformsForm = document.querySelector("#get-waveforms-form");
-
-    let spinnerDiv = document.querySelector("#spinner-div");
-
-    spinnerDiv.style.display = "none";
-
-    getWaveformsForm.addEventListener("submit", () => {
-        spinnerDiv.style.display = "block";
-        getWaveformsForm.submit();
+    btShowDataCenterInfo.addEventListener('click', () => {
+        if (btShowDataCenterInfo.textContent.trim() == "+ show info") {
+            btShowDataCenterInfo.textContent = "- hide"
+        }
+        else {
+            btShowDataCenterInfo.textContent = "+ show info"
+        }
     })
+
+    setDefaultValuesButton.addEventListener('click' , (e) => {
+        e.preventDefault();
+        document.querySelector("#network").value = 'IU';
+        document.querySelector("#station").value = 'COLA';
+        document.querySelector("#start-date").value = '2012-01-01';
+        document.querySelector("#start-time").value = '00:00:00';
+        document.querySelector("#end-date").value = '2012-01-01';
+        document.querySelector("#end-time").value = '05:00:00';
+    })
+
+    fetch('https://www.fdsn.org/ws/datacenters/1/query')
+        .then((res) => {
+            return res.json()
+        })
+        .then((jsonObjects) => {
+            let datacenters = jsonObjects['datacenters'];
+            
+            for (datacenter of datacenters) {
+                let name = datacenter['name'];
+                let web = datacenter['website'];
+                console.log(allDatacenters)
+                allDatacenters[name] = {
+                    dataselect: null, 
+                    event: null, 
+                    station: null, 
+                    info: {
+                        fullName: datacenter['fullName'], 
+                        summary: datacenter['summary'], 
+                        website: datacenter['website']
+                    }
+                }
+                
+                let repo_selected;
+                if (datacenter['repositories'].length > 1) {
+                    for (repo of datacenter['repositories']) {
+                        if (repo['description'].indexOf('SEED') !== -1) {
+                            repo_selected = repo
+                        }  
+                    }
+                }
+                else {
+                    repo_selected = datacenter['repositories'][0]
+                }
+
+
+                for (service of repo_selected['services']) {
+                    serviceURL = new URL(service['url'] + '/query');
+                    serviceURLHref = serviceURL.href;
+
+                    if (service['url'].indexOf('/dataselect/') !== -1) {
+                        allDatacenters[name]['dataselect'] = serviceURLHref
+                    }
+                    else if (service['url'].indexOf('/station/') !== -1) {
+                        allDatacenters[name]['station'] = serviceURLHref
+                    }
+                    else if (service['url'].indexOf('/event/') !== -1) {
+                        allDatacenters[name]['event'] = serviceURLHref
+                    }
+                }
+            }
+
+            datacenterSelect.innerHTML = '';
+
+            for (datacenterName in allDatacenters) {
+                let newOption = document.createElement("option");
+                newOption.value = datacenterName;
+
+                if (datacenterName == 'IRISDMC') {
+                    newOption.selected = true;
+                }
+
+                newOption.textContent = datacenterName;
+                datacenterSelect.appendChild(newOption);
+            }
+            
+        });
+    
+    document.querySelector("#datacenter-website").textContent = 'https://ds.iris.edu/'
+    document.querySelector("#datacenter-fullname").textContent = 'IRIS Data Managment Center'
+    document.querySelector("#datacenter-summary").textContent = 'The Data Management Center (DMC) of IRIS Data Services'
+
+    document.querySelector("#dataselect-url").value = 'http://service.iris.edu/fdsnws/dataselect/1';
+    document.querySelector("#station-url").value = 'http://service.iris.edu/fdsnws/station/1';
+    document.querySelector("#event-url").value = 'no-service';
+
+    datacenterSelect.addEventListener('change', () => {
+        let selectedDataCenter = allDatacenters[datacenterSelect.value];
+        
+        let website = selectedDataCenter['info']['website'];
+        let fullName = selectedDataCenter['info']['fullName'];
+        let summary = selectedDataCenter['info']['summary'];
+
+        if (website) {
+            document.querySelector("#datacenter-website").textContent = website
+        }
+        else {
+            document.querySelector("#datacenter-website").textContent = '-';
+        }
+
+        if (fullName) {
+            document.querySelector("#datacenter-fullname").textContent = fullName
+        }
+        else {
+            document.querySelector("#datacenter-fullname").textContent = '-';
+        }
+
+        if (summary) {
+            document.querySelector("#datacenter-summary").textContent = summary
+        }
+        else {
+            document.querySelector("#datacenter-summary").textContent = '-';
+        }
+
+        if (selectedDataCenter['dataselect']) {
+            document.querySelector(".tab-item-dataselect").classList.remove("disabled")
+            document.querySelector("#dataselect-url").value = selectedDataCenter['dataselect'];
+        }
+        else {
+            document.querySelector(".tab-item-dataselect").classList.add("disabled")
+            document.querySelector("#dataselect-url").value = 'no-service';
+        }
+
+        if (selectedDataCenter['station']) {
+            document.querySelector(".tab-item-station").classList.remove("disabled")
+            document.querySelector("#station-url").value = selectedDataCenter['station'];
+        }
+        
+        else {
+            document.querySelector(".tab-item-stations").classList.add("disabled")
+            document.querySelector("#station-url").value = 'no-service';
+        }
+
+        if (selectedDataCenter['event']) {
+            document.querySelector(".tab-item-event").classList.remove("disabled")
+            document.querySelector("#event-url").value = selectedDataCenter['event'];
+        }
+        else {
+            document.querySelector(".tab-item-event").classList.add("disabled")
+            document.querySelector("#event-url").value = 'no-service';
+        }
+    })
+
+
+    // fetch('https://www.fdsn.org/ws/datacenters/1/query')
+    // .then((response) => {
+    //     // if not ok deactivate the spinner and show the modal message
+    //     if (!response.ok) {
+    //       // get the error json
+    //       return response.json().then((errorMessage) => {
+    //         document.querySelector("#modal-message").textContent =
+    //           errorMessage["error_message"];
+    //         document.querySelector("#modal-title").textContent =
+    //           "An error has occured!";
+    //         document.querySelector("#modal-header").style.backgroundColor =
+    //           "red";
+    //         document.querySelector("#modal-button-triger").click();
+    //         throw new Error(errorMessage);
+    //       });
+    //     }
+    //     // if ok just return the json response
+    //     return response.json();
+    //   })
+    //   .then((jsonData) => {
+
+    //     let datacenters = jsonData['datacenters'];
+
+    //     for (dtc of datacenters) {
+    //         allDataCentersObject[dtc['name']] = {fullname: dtc['fullName'], website: dtc['website']}
+    //     }
+    // })
+
+    // fetch('https://www.fdsn.org/ws/networks/1/query')
+    // .then((response) => {
+    //     // if not ok deactivate the spinner and show the modal message
+    //     if (!response.ok) {
+    //       // get the error json
+    //       return response.json().then((errorMessage) => {
+    //         document.querySelector("#modal-message").textContent =
+    //           errorMessage["error_message"];
+    //         document.querySelector("#modal-title").textContent =
+    //           "An error has occured!";
+    //         document.querySelector("#modal-header").style.backgroundColor =
+    //           "red";
+    //         document.querySelector("#modal-button-triger").click();
+    //         throw new Error(errorMessage);
+    //       });
+    //     }
+    //     // if ok just return the json response
+    //     return response.json();
+    //   })
+    //   .then((jsonData) => {
+
+    //     let networks = jsonData['networks'];
+
+    //     for (net of networks) {
+    //         allNetworksObject[net['fdsn_code']] = {name: net['name'], doi: net['doi'], startDate: net['start_date'], endDate: net['end_date']}
+    //     }
+    // })
+
+    // console.log(allDataCentersObject)
+    
+    // datacenterSelect.innerHTML = '';
+    // for (datacenterName in allDataCentersObject) {
+    //     console.log(datacenterName)
+    //     let newOption = document.createElement("option");
+    //     newOption.value = datacenterName;
+
+    //     if (datacenterName == 'IRISDMC') {
+    //         newOption.selected = true;
+    //     }
+
+    //     newOption.textContent = datacenterName;
+    //     datacenterSelect.appendChild(newOption);
+    // }
+    
+    // networkSelect.innerHTML = '';
+    // for (networkCode in allNetworksObject) {
+    //     let newOption = document.createElement("option");
+    //     newOption.value = networkCode;
+
+    //     if (networkCode == 'IU') {
+    //         newOption.selected = true;
+    //     }
+
+    //     newOption.textContent = networkCode;
+    //     networkSelect.appendChild(newOption);
+
+    // }
+
+    // 
+
+    // fetch('https://www.fdsn.org/ws/datacenters/1/query')
+    // .then((response) => {
+    //     // if not ok deactivate the spinner and show the modal message
+    //     if (!response.ok) {
+    //       // get the error json
+    //       return response.json().then((errorMessage) => {
+    //         document.querySelector("#modal-message").textContent =
+    //           errorMessage["error_message"];
+    //         document.querySelector("#modal-title").textContent =
+    //           "An error has occured!";
+    //         document.querySelector("#modal-header").style.backgroundColor =
+    //           "red";
+    //         document.querySelector("#modal-button-triger").click();
+    //         throw new Error(errorMessage);
+    //       });
+    //     }
+    //     // if ok just return the json response
+    //     return response.json();
+    //   })
+    //   .then((jsonData) => {
+
+    //     let allDatacentersObjects = jsonData['datacenters'];
+    //     let allDatacentersList = allDatacentersObjects.map(obj => obj['name']);
+
+    //     let uniqueDatacenters = [...new Set(allDatacentersList)];
+
+    //     datacenterSelect.innerHTML = '';
+
+    //     for (name of uniqueDatacenters) {
+    //         let newOption = document.createElement("option");
+    //         newOption.value = name;
+
+    //         if (name == 'IRISDMC') {
+    //             newOption.selected = true;
+    //         }
+
+    //         newOption.textContent = name;
+    //         datacenterSelect.appendChild(newOption);
+    //     }
+
+    //     let defaultOption2 = document.createElement("option");
+    //     defaultOption2.value = 'IRIS';
+    //     defaultOption2.textContent = 'IRIS';
+
+    //     datacenterSelect.appendChild(defaultOption2);
+
+    //     document.querySelector("#datacenter-code").value = ''
+      
+
+    //   })
+    //   .catch((error) => {
+    //     // Handle any errors during the upload process
+    //     console.error("Error uploading MSeed file:", error);
+    //   });
+
+
+    // let buttonDownloadSelected = document.querySelector("#button-download-selected");
+    // let buttonDownloadAll = document.querySelector("#button-download-all");
+
+    // let getWaveformsForm = document.querySelector("#get-waveforms-form");
+
+    // let spinnerDiv = document.querySelector("#spinner-div");
+
+    // spinnerDiv.style.display = "none";
+
+    // getWaveformsForm.addEventListener("submit", () => {
+    //     spinnerDiv.style.display = "block";
+    //     getWaveformsForm.submit();
+    // })
+
+    // fetch('https://www.fdsn.org/ws/networks/1/query')
+    // .then((response) => {
+    //     // if not ok deactivate the spinner and show the modal message
+    //     if (!response.ok) {
+    //       // get the error json
+    //       return response.json().then((errorMessage) => {
+    //         document.querySelector("#modal-message").textContent =
+    //           errorMessage["error_message"];
+    //         document.querySelector("#modal-title").textContent =
+    //           "An error has occured!";
+    //         document.querySelector("#modal-header").style.backgroundColor =
+    //           "red";
+    //         document.querySelector("#modal-button-triger").click();
+    //         throw new Error(errorMessage);
+    //       });
+    //     }
+    //     // if ok just return the json response
+    //     return response.json();
+    //   })
+    //   .then((jsonData) => {
+    //     let networkSelect = document.querySelector("#network");
+
+    //     let allNetworksObjects = jsonData['networks'];
+    //     let allNetworksList = allNetworksObjects.map(obj => obj['fdsn_code']);
+
+    //     let uniqueNetworks = [...new Set(allNetworksList)];
+
+    //     networkSelect.innerHTML= '';
+    //     // Add new options (loop through the traces and get the channel)
+    //     let defaultOption = document.createElement("option");
+    //     defaultOption.value = 'select network';
+    //     defaultOption.textContent = 'select network';
+    //     defaultOption.disabled = true;
+    //     defaultOption.selected = true;
+    //     networkSelect.appendChild(defaultOption);
+        
+    //     for (name of uniqueNetworks) {
+    //         let newOption = document.createElement("option");
+    //         newOption.value = name;
+    //         newOption.textContent = name;
+    //         networkSelect.appendChild(newOption);
+    //     }
+
+    //   })
+    //   .catch((error) => {
+    //     // Handle any errors during the upload process
+    //     console.error("Error uploading MSeed file:", error);
+    //   });
+
+
 </script>
 {% endblock %}

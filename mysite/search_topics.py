@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, current_app, redirect, ur
 import re
 import math
 import json
+import os
+import glob
 
 bp = Blueprint("BP_search_topics", __name__, url_prefix="/search-topics")
 
@@ -19,13 +21,19 @@ def filter_topics():
     filtered_topics = []
     if filter_selected == "articles":
         for tp in topics:
-            if tp["type"] == "static":
+            if tp["type"] == "article":
                 filtered_topics.append(tp)
 
-    elif filter_selected == "interactive tools":
+    elif filter_selected == "interactive-tools":
         for tp in topics:
-            if tp["type"] == "interactive":
+            if tp["type"] == "interactive-tool":
                 filtered_topics.append(tp)
+
+    elif filter_selected == "python-tutorials":
+        for tp in topics:
+            if tp["type"] == "python-tutorial":
+                filtered_topics.append(tp)
+                
     else:
         filtered_topics = topics
 
@@ -40,28 +48,22 @@ def filter_topics():
 def search_topic():
     # get the search parameter that the user inserted
     search_param = request.args.get("search-param").lower()
-    # get firstly all the topics
-    with open(current_app.config["ALL_TOPICS_FILE"]) as fjson:
-        topics = json.load(fjson)["topics"]
 
-    if search_param:
-        # create an initial empty list to append the found topics
-        found_topics_list = []
-        # loop through all the topics
-        for tp in topics:
-            # get the description of each topic
-            lower_description = tp["description"].lower()
-            lower_title = tp["title"].lower()
-            # if the search parameter that the user inserted is somewhere in the topic description,
-            # append the current topic to the found list created above
-            if search_param in lower_description or search_param in lower_title:
-                found_topics_list.append(tp)
+    found_templates = {}
 
-        selectedtopic = f"Topics that contain: {search_param}"
-    else:
-        found_topics_list = topics
-        selectedtopic = "All Topics"
+    for arx in glob.glob(current_app.root_path +  '/**/*.html', recursive=True):
+        with open(arx, 'r') as fr:
+            file_string = fr.read()
+
+            if (search_param in file_string or search_param in arx):
+                tmp_name = os.path.basename(arx)[:-5]
+                if 'articles' in tmp:
+                    found_templates[arx] = f"url_for('get_article', filename='{tmp_name}')"
+                elif 'interactive-tools' in tmp:
+                    found_templates[arx] = f"url_for('get_interactive_tool', filename='{tmp_name}')"
+                elif 'python-tutorials' in tmp:
+                    found_templates[arx] = f"url_for('get_python_tutorial', filename='{tmp_name}')"
 
     return render_template(
-        "search-topics.html", topics=found_topics_list, selectedtopic=selectedtopic
+        "search-topics.html", topics=found_templates
     )

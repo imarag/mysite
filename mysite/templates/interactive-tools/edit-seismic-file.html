@@ -18,7 +18,7 @@ Edit the content of a seismic file
     uploaded file's header for the selected record. You can modify these parameters using the <kbd>Update Header</kbd>
     option, but note that the values for the sampling rate (fs) and total sample points (npts)
     cannot be changed. If you want to create a seismic MiniSEED file from scratch, use the
-    <a href="{{ url_for('show_topic', topic_tmp_name='file-to-mseed') }}" class="link-info">File To MSEED</a>
+    <a href="{{ url_for('get_interactive_tool', filename='file-to-mseed') }}" class="link-info">File To MSEED</a>
     converter tool. Feel free to download the data of the seismic file in .CSV format using the <kbd>Download Data</kbd>
     option.
     Also in case you need the header information of the uploaded file, download it using the <kbd>Download Header</kbd>

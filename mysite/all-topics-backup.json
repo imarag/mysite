@@ -5,7 +5,7 @@
       "title": "Python Obspy",
       "description": "An open-source Python library designed for advanced analysis, processing, and manipulation of seismological data",
       "image_name": "obspy-icon.png",
-      "type": "static",
+      "type": "python-tutorial",
       "template_name": "obspy"
     },
     {
@@ -13,7 +13,7 @@
       "title": "Fourier Spectra calculation",
       "description": "An interactive tool to calculate the Fourier spectra at the signal and/or the noise window on the seismogram. Optionally, compute the Horizontal to Vertical Spectral Ratio (HVSR) using the generated Fourier spectra. Feel free to download the data and the figures at the results.",
       "image_name": "fourier-icon.png",
-      "type": "interactive",
+      "type": "interactive-tool",
       "template_name": "fourier"
     },
     {
@@ -21,7 +21,7 @@
       "title": "Arrival Time Selection",
       "description": "An interactive tool to extract the P & S wave arrival times from the records. You can use either the built-in filters or manually set filters to filter the seismograms within a defined frequency range, simplifying the process of selecting the arrivals.",
       "image_name": "arrival-pick-icon.png",
-      "type": "interactive",
+      "type": "interactive-tool",
       "template_name": "pick-arrivals"
     },
     {
@@ -29,7 +29,7 @@
       "title": "Data Files To MiniSEED",
       "description": "An interactive tool to transform data files into the seismic MiniSEED format. To begin, upload your file at the specific file format menu, and specify the relevant parameters (e.g., delimiter and skip rows). Afterward, choose the corresponding seismic parameters to complete the conversion process.",
       "image_name": "file-to-mseed-icon.png",
-      "type": "interactive",
+      "type": "interactive-tool",
       "template_name": "file-to-mseed"
     },
     {
@@ -37,7 +37,7 @@
       "title": "Signal Processing",
       "description": "An interactive tool to process seismic records using various techniques to cut the waveforms between a specific time range, to apply a smoothing function using an appropriate filter and eliminate any pre-existing trend in the waveforms.",
       "image_name": "signal-processing-icon.png",
-      "type": "interactive",
+      "type": "interactive-tool",
       "template_name": "signal-processing"
     },
     {
@@ -45,7 +45,7 @@
       "title": "Seismic Site effect",
       "description": "The phenomenon of the amplification of the seismic ground motion due to the subsurface geological conditions",
       "image_name": "site-effect-icon.png",
-      "type": "static",
+      "type": "article",
       "template_name": "site-effect"
     },
     {
@@ -53,7 +53,7 @@
       "title": "Introduction to Seismology",
       "description": "An introduction to various seismological concepts",
       "image_name": "introduction-to-seismology-icon.png",
-      "type": "static",
+      "type": "article",
       "template_name": "seismology-intro"
     },
     {
@@ -61,7 +61,7 @@
       "title": "Distance between points",
       "description": "An interactive tool to compute the distance between two geographical points on the WGS84 ellipsoid. Use the \"locate\" option to open an interactive map and visually inspect the specified points.",
       "image_name": "distance-between-points-icon.png",
-      "type": "interactive",
+      "type": "interactive-tool",
       "template_name": "distance-between-points"
     },
     {
@@ -69,7 +69,7 @@
       "title": "Python File Manipulation",
       "description": "Utilization of various Python libraries to manipulate system files and paths",
       "image_name": "file-manipulation-icon.png",
-      "type": "static",
+      "type": "python-tutorial",
       "template_name": "file-manipulation"
     },
     {
@@ -77,7 +77,7 @@
       "title": "Python Matplotlib Plotting",
       "description": "A basic tutorial to plot seismic data using various Matplotlib functions and methods",
       "image_name": "matplotlib-icon.png",
-      "type": "static",
+      "type": "python-tutorial",
       "template_name": "matplotlib"
     },
     {
@@ -85,7 +85,7 @@
       "title": "Edit Seismic File",
       "description": "A tool to look inside the content of a seismic file. Feel free to edit the header of it and download its data and header information",
       "image_name": "edit-seismic-file-icon.png",
-      "type": "interactive",
+      "type": "interactive-tool",
       "template_name": "edit-seismic-file"
     },
     {
@@ -93,7 +93,7 @@
       "title": "Compute Fourier Spectra On A Window",
       "description": "An article that computes the Fourier Spectra between a window on the waveforms",
       "image_name": "fourier-on-window-icon.png",
-      "type": "static",
+      "type": "article",
       "template_name": "compute-fourier-on-window"
     }
   ]

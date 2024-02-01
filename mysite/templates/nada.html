@@ -1,0 +1,333 @@
+
+
+<header>
+    <nav class="navbar bg-transparent  navbar-expand-lg text-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('get_page', page_path='index.html') }}">
+                <img src="{{ url_for('static', filename='img/site-logo-light.png') }}" class="img-fluid"
+                    style="height: 60px" alt="logo of the site">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-light">
+                    <li class="nav-item">
+                        <a class="nav-link active {{ navTextColor|default('text-dark') }}" aria-current="page"
+                            href="{{ url_for('get_page', page_path='index.html') }}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ navTextColor|default('text-dark') }}" href="#"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Data
+                        </a>
+                        <ul class="dropdown-menu bg-dark p-4" style="width: 200px; opacity: 0.9;">
+                            <li>
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col">
+                                        <h1 class="text-light fw-semibold fs-3 text-start mb-4 ">
+                                            FDSN Data</h1>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Get Records
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Get Waveforms
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Get Events
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ navTextColor|default('text-dark') }}" href="#"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tools
+                        </a>
+                        <ul class="dropdown-menu bg-dark p-4" style="width: 500px; opacity: 0.9;">
+                            <li>
+                                <div class="row justify-content-center align-items-stretch">
+                                    <div class="col">
+                                        <h1 class="text-light fw-semibold fs-3 text-start mb-4 ">
+                                            Edit Waveforms</h1>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Implement a Taper Filter
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Cut The Waveforms
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Apply A Frequency Filter
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Remove Trend From Data
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <h1 class="text-light fw-semibold fs-3 text-start mb-4 ">
+                                            Interactive Tools</h1>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Arrivals Selection
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Fourier Computation
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Distance Between Points
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ navTextColor|default('text-dark') }}" href="#"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Knowledge
+                        </a>
+                        <ul class="dropdown-menu bg-dark p-4" style="width: 500px; opacity: 0.9;">
+                            <li>
+                                <div class="row justify-content-center align-items-stretch">
+                                    <div class="col">
+                                        <h1 class="text-light fw-semibold fs-3 text-start mb-4 ">
+                                            Seismic Articles</h1>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Seismology Intro
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Site Effect
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <h1 class="text-light fw-semibold fs-3 text-start mb-4">Python Tutorials
+                                        </h1>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item text-bg-dark text-muted px-0 border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Obspy
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    File Manipulation
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item text-bg-dark text-muted px-0  border-0">
+                                                <a class="icon-link icon-link-hover text-decoration-none text-white text-opacity-75"
+                                                    style="--bs-icon-link-transform: translate(5px, -5px);"
+                                                    href="#">
+                                                    Matplotlib
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active {{ navTextColor|default('text-dark') }}" aria-current="page"
+                            href="{{ url_for('get_page', page_path='help-and-support.html') }}">Support</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active {{ navTextColor|default('text-dark') }}" aria-current="page"
+                            href="{{ url_for('get_page', page_path='donation.html') }}">Donation</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search" action="{{ url_for('BP_search_topics.search_topic') }}">
+                    <input class="form-control me-2" type="search" placeholder="Search Topic..." aria-label="Search"
+                        name="search-param">
+                    <button class="btn btn-info" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>

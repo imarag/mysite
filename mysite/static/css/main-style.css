@@ -1,9 +1,30 @@
 html {
   scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin: 0px;
+}
+
+.dropdown-subtitle {
+  color: rgba(255, 255, 255, 0.919) !important;
+  font-weight: bold;
+}
+
+main {
+  min-height: 100vh;
+}
+
+.interactive-tools-index-div {
+  position: relative;
+}
+
+.interactive-tools-index-div span {
+  position: absolute;
+  right: 0;
+
 }
 
 /* --------------------------HELP AND SUPPORT --------------------------*/
@@ -28,39 +49,15 @@ body {
 
 /* ------------------------- BASE PAGE TOP MENU ----------------------------*/
 
-#index-top-menu .nav-item:hover {
-  filter: opacity(1);
+#main-index-background-image-div {
+  background-image: url("/static/img/index-background-image.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 0.9;
+  min-height: 500px !important;
 }
 
-#index-top-menu .nav-item {
-  filter: opacity(0.6);
-  color: rgb(197, 192, 192);
-}
-
-.user-dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu {
-  background-color: #343a3a;
-}
-
-.dropdown-menu a:hover {
-  background-color: #343a3a;
-  color: rgb(232, 226, 226);
-}
-
-.dropdown-menu a {
-  color: rgb(153, 148, 148);
-}
-
-#about-me-icons-container .about-me-icon-div {
-  transition: transform 0.8s;
-}
-
-#about-me-icons-container .about-me-icon-div:hover {
-  transform: translateY(150px) translateX(150px);
-}
 /* ------------------------- GET DATA PAGE ----------------------------*/
 
 .button-download-selected:hover {
@@ -87,15 +84,6 @@ body {
 }
 
 /* ------------------------- INDEX PAGE ----------------------------*/
-
-#main-index-background-image-div {
-  background-image: url("/static/img/index-background-image.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 0.9;
-  min-height: 500px !important;
-}
 
 .index-interactive-tools-badge:hover {
   transform: scale(1.1);

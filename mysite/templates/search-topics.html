@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="container-lg">
+<div class="container-lg" style="margin-top: 100px;">
 
     <section class="mt-5">
         <nav aria-label="breadcrumb">
@@ -14,7 +14,7 @@
             </ol>
         </nav>
 
-        <p class="text-center display-4 mt-5 mb-4 fw-semibold">
+        <p class="text-center display-4 my-5 fw-semibold text-muted">
             {{ selectedtopic }}
         </p>
         <div class="mb-5">
@@ -31,7 +31,7 @@
                 {% for tpc in topics %}
                 {% set filename = tpc['image_name'] %}
                 <div class="col-9 col-sm-7 col-md-5 col-lg-4 col-xl-3 text-center">
-                    <a href="{{ url_for('show_topic', topic_tmp_name=tpc['template_name']) }}"
+                    <a href="{{ url_for('get_page', page_path=tpc['template_name']+'.html') }}"
                         class="text-decoration-none text-dark">
                         <div class="card text-bg-dark" style="margin:10px auto;" id="all-topics-card">
                             <img src="{{ url_for('static', filename='img/template-images/resized/' ~ filename) }}"

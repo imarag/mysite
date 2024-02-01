@@ -4,58 +4,51 @@
 
 {% block content %}
 
-<section>
-    <div id="main-index-background-image-div"
-        class="d-flex  flex-column  align-items-start align-items-center justify-content-center vh-100">
-        <div class="text-center p-4">
-            <h2 class="text-center text-light fw-bold display-1 mb-5">
-                A Journey Into Seismology
-            </h2>
-            <h2 class="text-center text-light display-5 my-5">
-                Discover Seismic Concepts, Interact with Tools, and Deepen Your Understanding
-            </h2>
-        </div>
-    </div>
-</section>
 
-<section class="bg-light2 py-5 my-0">
+<section class="bg-light2 py-1 my-0">
     <div class="container-lg py-5">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-4 col-sm-3 text-center">
-                <img src="/static/img/book-read.svg" class="img-fluid d-block d-md-none" alt="read topic icon">
+        <div class="row justify-content-center align-items-center mb-1">
+            <div class="col-4 col-sm-3 col-md-3 col-lg-3 col-xl-2">
+                <img src="{{ url_for('static', filename='img/articles-icon.svg') }}" class="img-fluid"
+                    alt="read topic icon">
             </div>
-        </div>
-        <div class="row justify-content-center align-items-center mb-5">
-            <div class="col-md-3 col-lg-3 col-xl-2">
-                <img src="/static/img/book-read.svg" class="img-fluid d-none d-md-block" alt="read topic icon">
-            </div>
-            <div class="col-8 col-md-5">
+            <div class="col-11 col-md-5">
                 <p class="text-dark fs-4 text-center text-md-start">Get started with the <a
                         href="{{ url_for('BP_search_topics.filter_topics', topictype='articles') }}"
                         class="link-info">seismic articles</a> to learn more about the science of Seismology</p>
             </div>
         </div>
-        <div class="row justify-content-center align-items-center">
-            <div class="col-4 col-sm-3 text-center">
-                <img src="/static/img/interactive.svg" class="img-fluid d-block d-md-none" alt="read topic icon">
+        <div class="row justify-content-center align-items-center mb-3">
+            <div class="col-4 col-sm-3 col-md-3 col-lg-3 col-xl-2 d-md-none d-block">
+                <img src="{{ url_for('static', filename='img/interactive-tools-icon.svg') }}" class="img-fluid"
+                    alt="interactive topics icon">
             </div>
-        </div>
-        <div class="row justify-content-center align-items-center">
-            <div class="col-8 col-md-5">
+            <div class="col-11 col-md-5">
                 <p class="text-dark fs-4 text-center text-md-start">Try the <a
-                        href="{{ url_for('BP_search_topics.filter_topics', topictype='interactive tools') }}"
+                        href="{{ url_for('BP_search_topics.filter_topics', topictype='interactive-tools') }}"
                         class="link-info">interactive tools</a> to process and analyze real seismological data</p>
             </div>
-            <div class="col-md-3 col-lg-3 col-xl-2">
-                <img src="/static/img/interactive.svg" class="img-fluid d-none d-md-block"
+            <div class="col-4 col-sm-3 col-md-3 col-lg-3 col-xl-2 d-md-block d-none">
+                <img src="{{ url_for('static', filename='img/interactive-tools-icon.svg') }}" class="img-fluid"
                     alt="interactive topics icon">
             </div>
         </div>
-
+        <div class="row justify-content-center align-items-center mb-3">
+            <div class="col-4 col-sm-3 col-md-3 col-lg-3 col-xl-2">
+                <img src="{{ url_for('static', filename='img/python-tutorials-icon.svg') }}" class="img-fluid"
+                    alt="interactive topics icon">
+            </div>
+            <div class="col-11 col-md-5">
+                <p class="text-dark fs-4 text-center text-md-start">Check the <a
+                        href="{{ url_for('BP_search_topics.filter_topics', topictype='python-tutorials') }}"
+                        class="link-info">Python tutorials</a> that focus on libraries related to seismic data
+                    processing</p>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="col">
                 <p class="text-center text-dark fs-4 mt-5">or <a
-                        href="{{ url_for('BP_search_topics.filter_topics', topictype='all topics') }}"
+                        href="{{ url_for('BP_search_topics.filter_topics', topictype='all-topics') }}"
                         class="link-info">check</a> all the topics...</p>
             </div>
         </div>
@@ -84,7 +77,8 @@
         </div>
         <div class="row justify-content-center mb-4 mt-2">
             <div class="col-10 text-center">
-                <a class="btn btn-primary" href="{{ url_for('show_topic', topic_tmp_name='obspy') }}">Go to the page</a>
+                <a class="btn btn-primary" href="{{ url_for('get_python_tutorial', filename='obspy.html') }}">Go
+                    to the page</a>
             </div>
         </div>
         <div class="row justify-content-center my-2">
@@ -104,14 +98,14 @@
             <div class="row justify-content-center align-items-center gy-3">
                 <div class="col-auto text-center">
                     <div class="card index-article-card shadow-lg mx-auto rounded" style="width: 25rem; height: 450px;">
-                        <img src="/static/img/site-effect-animation.gif" alt="Site effect"
+                        <img src="{{ url_for('static', filename='img/site-effect-animation.gif') }}" alt="Site effect"
                             class="img-fluid card-img-top" id="site-effect-animation">
                         <div class="card-body bg-very-light-yellow2">
                             <h5 class="card-title fw-bold fs-4">Seismic Site Effect</h5>
                             <hr class="w-75 border-top border-2 mx-auto border-dark">
                             <p class="card-text text-muted fs-6  mx-0 my-0">Influence of the underground Geology at the
                                 incoming ground motion</p>
-                            <a href="{{ url_for('show_topic', topic_tmp_name='site-effect') }}"
+                            <a href="{{ url_for('get_article', filename='site-effect.html') }}"
                                 class="btn btn-dark position-absolute bottom-0 start-50 translate-middle mb-4">Go to the
                                 page</a>
                         </div>
@@ -119,14 +113,14 @@
                 </div>
                 <div class="col-auto text-center">
                     <div class="card index-article-card shadow-lg mx-auto rounded" style="width: 25rem; height: 450px;">
-                        <img src="/static/img/tectonic-plates-earthquakes.gif" alt="elastic rebound theory"
-                            class="img-fluid card-img-top" id="fault-animation">
+                        <img src="{{ url_for('static', filename='img/tectonic-plates-earthquakes.gif') }}"
+                            alt="elastic rebound theory" class="img-fluid card-img-top" id="fault-animation">
                         <div class="card-body bg-very-light-yellow2">
                             <h5 class="card-title fw-bold fs-4">Introduction To Seismology</h5>
                             <hr class="w-75 border-top border-2 mx-auto border-dark">
                             <p class="card-text text-muted fs-6 mx-0 my-0">Introduce yourself to different seismological
                                 concepts about earthquakes</p>
-                            <a href="{{ url_for('show_topic', topic_tmp_name='seismology-intro') }}"
+                            <a href="{{ url_for('get_article', filename='seismology-intro.html') }}"
                                 class="btn btn-dark position-absolute bottom-0 start-50 translate-middle mb-4">Go to the
                                 page</a>
                         </div>
@@ -139,33 +133,85 @@
 
 <section class="bg-dark py-5" id="interactive-tools-video">
     <div class="container-lg">
-        <h2 class="display-4 text-muted text-center mb-5 fw-semibold">Try the interactive tools</h2>
+        <h2 class="display-4 text-secondary text-center mb-5 fw-semibold">Try the interactive tools</h2>
         <div class="row justify-content-center my-5 gy-2 text-center">
             <div class="col-12 col-md-auto">
                 <a class="badge bg-secondary text-dark text-decoration-none index-interactive-tools-badge fs-6"
-                    href="{{ url_for('show_topic', topic_tmp_name='fourier') }}">Fourier spectra</a>
+                    href="{{ url_for('get_interactive_tool', filename='fourier.html') }}">Fourier spectra</a>
             </div>
             <div class="col-12 col-md-auto">
                 <a class="badge bg-danger text-dark text-decoration-none index-interactive-tools-badge fs-6"
-                    href="{{ url_for('show_topic', topic_tmp_name='signal-processing') }}">Signal processing</a>
+                    href="{{ url_for('get_interactive_tool', filename='signal-processing.html') }}">Signal
+                    processing</a>
             </div>
             <div class="col-12 col-md-auto">
                 <a class="badge bg-success text-dark text-decoration-none index-interactive-tools-badge fs-6"
-                    href="{{ url_for('show_topic', topic_tmp_name='pick-arrivals') }}">Arrival picking</a>
+                    href="{{ url_for('get_interactive_tool', filename='pick-arrivals.html') }}">Arrival
+                    picking</a>
             </div>
             <div class="col-12 col-md-auto">
                 <a class="badge bg-warning text-dark text-decoration-none index-interactive-tools-badge fs-6"
-                    href="{{ url_for('show_topic', topic_tmp_name='file-to-mseed') }}">file to mseed</a>
+                    href="{{ url_for('get_interactive_tool', filename='file-to-mseed.html') }}">file to mseed</a>
             </div>
         </div>
-        <div class="row justify-content-center align-items-center gy-3">
+        <div class="row justify-content-center align-items-center gy-3 interactive-tools-index-div">
             <div class="col-9 col-sm-8 col-md-5 text-center text-md-start">
                 <ul class="list-group list-group-flush rounded fs-5">
-                    <li class="list-group-item  bg-info" id="trim-hover-li">Trim the waveform</li>
-                    <li class="list-group-item  bg-info" id="pick-hover-li">Pick the arrivals</li>
-                    <li class="list-group-item  bg-info" id="detrend-hover-li">Detrend the waveform</li>
-                    <li class="list-group-item  bg-info" id="taper-hover-li">Apply taper techniques</li>
-                    <li class="list-group-item  bg-info" id="fourier-hover-li">Compute the Fourier Spectra</li>
+                    <li class="list-group-item bg-dark text-secondary text-start" id="trim-hover-li">
+                        Trim the waveform
+                        <span class="ms-2">
+                            [
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgba(255, 0, 0, 0.688)" class="bi bi-record-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10"/>
+                            </svg>
+                            REC 
+                            ]
+                        </span>
+                    </li>
+                    <li class="list-group-item bg-dark text-secondary text-start" id="pick-hover-li">
+                        Pick the arrivals
+                        <span class="ms-2">
+                            [
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgba(255, 0, 0, 0.688)" class="bi bi-record-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10"/>
+                            </svg>
+                            REC 
+                            ]
+                        </span>
+                    </li>
+                    <li class="list-group-item bg-dark text-secondary text-start" id="detrend-hover-li">
+                        Detrend the waveform
+                        <span class="ms-2">
+                            [
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgba(255, 0, 0, 0.688)" class="bi bi-record-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10"/>
+                            </svg>
+                            REC 
+                            ]
+                        </span>
+                    </li>
+                    <li class="list-group-item bg-dark text-secondary text-start" id="taper-hover-li">
+                        Apply taper techniques
+                        <span class="ms-2">
+                            [
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgba(255, 0, 0, 0.688)" class="bi bi-record-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10"/>
+                            </svg>
+                            REC 
+                            ]
+                        </span>
+                    </li>
+                    <li class="list-group-item bg-dark text-secondary text-start" id="fourier-hover-li">
+                        Compute Fourier Spectra
+                        <span class="ms-2">
+                            [
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgba(255, 0, 0, 0.688)" class="bi bi-record-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10"/>
+                            </svg>
+                            REC 
+                            ]
+                        </span>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-1 col-12 d-none d-md-block">
@@ -174,7 +220,8 @@
             </div>
 
             <div class="col-md-6 col-12">
-                <img class="img-fluid rounded" id="image-hover" src="/static/img/trim-gif.gif"
+                <img class="img-fluid rounded" id="image-hover"
+                    src="{{ url_for('static', filename='img/trim-gif.gif') }}"
                     alt="white image placeholder to show the gif images">
             </div>
         </div>
@@ -190,12 +237,13 @@
     <div class="container-lg py-5">
         <div class="row d-block d-lg-none justify-content-center my-4">
             <div class="col text-center">
-                <img src="/static/img/python-logo.png" alt="python logo" class="img-fluid" style="width: 75px;">
+                <img src="{{ url_for('static', filename='img/python-logo.png') }}" alt="python logo" class="img-fluid"
+                    style="width: 75px;">
             </div>
         </div>
         <div class="row justify-content-center align-items-center gx-lg-5">
             <div class="col-md-3 col-lg-3 col-xl-3 text-center d-none d-lg-block">
-                <img src="/static/img/python-logo.png" alt="python logo" class="img-fluid">
+                <img src="{{ url_for('static', filename='img/python-logo.png') }}" alt="python logo" class="img-fluid">
             </div>
             <div class="col-11 col-md-10 col-lg-8 col-xl-7">
                 <p class="text-center text-lg-start display-4 fw-semibold mb-5">Python for Earthquakes</p>
@@ -212,7 +260,7 @@
                 </p>
                 <div class="text-center text-lg-start mt-4 mb-5">
                     <a class="btn btn-outline-primary" style="width:170px;"
-                        href="{{ url_for('show_topic', topic_tmp_name='file-manipulation') }}">
+                        href="{{ url_for('get_python_tutorial', filename='file-manipulation.html') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-file-earmark-text" viewBox="0 0 16 16">
                             <path
@@ -223,7 +271,7 @@
                         file-handling
                     </a>
                     <a class="btn btn-outline-warning" style="width:170px;"
-                        href="{{ url_for('show_topic', topic_tmp_name='matplotlib') }}">
+                        href="{{ url_for('get_python_tutorial', filename='matplotlib.html') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-bar-chart" viewBox="0 0 16 16">
                             <path

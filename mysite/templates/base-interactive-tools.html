@@ -7,7 +7,7 @@
             <div class="container-lg py-5">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-11 col-md-9 col-lg-9">
-                        <p class="text-center display-4 fw-semibold">
+                        <p class="text-center display-4 fw-semibold" style="margin-top: 60px;">
                             {{ topic_object.title }}
                         </p>
                         <p class="text-muted fs-3 text-center">
@@ -58,13 +58,13 @@
                     {% if topic_object["title"] != 'Data Files To MiniSEED' %}
                     <p class="text-muted text-center mt-5 fs-6">
                         Don't have a seismic data file ? Click <a
-                            href="{{ url_for('show_topic', topic_tmp_name='file-to-mseed') }}"
+                            href="{{ url_for('get_interactive_tool', filename='file-to-mseed') }}"
                             class="link-info">here</a> to convert data stored in a file (such as .csv, .txt or .xlsx) to
                         the seismic MiniSEED data file format
                         or <a href="{{ url_for('static', filename='static-files/test-mseed-file.mseed') }}"
                             class="link-info">download</a> one to experiment with the tool. Please inform me of any
                         encountered bugs through the <a class="link-info"
-                            href="{{ url_for('get_page', page_name='help-and-support') }}">Help & Support</a> page.
+                            href="{{ url_for('get_page', page_path='support.html') }}">Help & Support</a> page.
                     </p>
                     {% endif %}
                 </div>

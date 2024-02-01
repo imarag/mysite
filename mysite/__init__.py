@@ -61,22 +61,24 @@ def create_app():
     def home():
         return render_template("index.html")
 
-    @app.route("/get-page/<page_name>")
-    def get_page(page_name):
-        if not os.path.exists(
-            os.path.join(app.root_path, "templates", f"{page_name}.html")
-        ):
-            abort(404)
-        return render_template(f"{page_name}.html")
-
-    @app.route("/show-topic/<topic_tmp_name>")
-    def show_topic(topic_tmp_name):
-        if not os.path.exists(
-            os.path.join(app.root_path, "templates", "topics", f"{topic_tmp_name}.html")
-        ):
-            abort(404)
-        topic = get_topic("template_name", topic_tmp_name)
-        return render_template(f"topics/{topic_tmp_name}.html", topic_object=topic)
+    @app.route("/get-page/<path:page_path>")
+    def get_page(page_path):
+        return render_template(page_path)
+    
+    @app.route("/get-article/<filename>")
+    def get_article(filename):
+        topic = get_topic("template_name", filename.split(".")[0])
+        return render_template(f"articles/{filename}", topic_object=topic)
+    
+    @app.route("/get-interactive-tool/<filename>")
+    def get_interactive_tool(filename):
+        topic = get_topic("template_name", filename.split(".")[0])
+        return render_template(f"interactive-tools/{filename}", topic_object=topic)
+    
+    @app.route("/get-python-tutorial/<filename>")
+    def get_python_tutorial(filename):
+        topic = get_topic("template_name", filename.split(".")[0])
+        return render_template(f"python-tutorials/{filename}", topic_object=topic)
 
     @app.route("/download-static-file/<file>")
     def download_static_file(file):
